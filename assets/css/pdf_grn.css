@@ -1,0 +1,122 @@
+html,
+body {
+    height:100%;
+}
+
+@page { margin: 20px 30px -20px 60px; }
+
+body {
+    background-color: #fff;
+    margin: 15px 15px 15px 15px;
+    font: 8pt normal Helvetica, Arial, sans-serif;
+    color: #000000;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 100%;
+}
+
+a {
+    color: #003399;
+    background-color: transparent;
+    font-weight: normal;
+}
+
+h1 {
+    color: #444;
+    background-color: transparent;
+    font-size: 17px;
+    font-weight: normal;
+    margin: 0 0 14px 0;
+    padding: 14px 15px 10px 15px;
+    text-align:center;
+}
+
+.logo {
+    position:fixed;
+    top: 46px;
+    left: 15px;
+    width:200px;
+}
+
+#body{
+    margin: 0;
+}
+
+p.footer{
+    text-align: right;
+    font-size: 11px;
+    border-top: 1px solid #D0D0D0;
+    line-height: 32px;
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 0;
+}
+
+#container{
+    border: 1px solid #000000;
+}
+
+#footer {
+    width:100%;
+}
+
+.padding-3 {
+    padding:3px;
+}
+
+.padding-5 {
+    padding:5px;
+}
+
+.border {
+    border: 1px solid #000000;
+}
+
+.border_no_left {
+    border-top: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.border_no_right {
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.border_top {
+    border-top: 1px solid #000000;
+}
+
+.border_right {
+    border-right: 1px solid #000000;
+}
+
+.v_middle {
+    vertical-align: middle;
+}
+.v_top {
+    vertical-align: top;
+}
+
+.text-center{
+    text-align:center;
+}
+
+.text-left{
+    text-align:left;
+}
+
+.text-right{
+    text-align:right;
+}
+
+hr {
+    margin:1px;
+    border-top: 1px solid #000000;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}

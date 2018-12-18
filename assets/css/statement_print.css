@@ -1,0 +1,211 @@
+/*!
+ * Financial Statement
+ */
+
+html,
+body {
+    background-color: #fff;
+    margin: 15px 25px 15px 30px;
+    /*font: 10px normal Helvetica, Arial, sans-serif;*/
+    font-family: "Open Sans", sans-serif;
+    font-size: 10px;
+    color: #000000;
+    height:100%;
+}
+
+div.table_small {
+   font: 10px normal Helvetica, Arial, sans-serif;
+}
+
+/*html{margin-bottom: 5px;}*/
+@page {margin: 45px 25px 10px 35px;}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 0px solid #eee;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+.page-title {
+    padding: 0px;
+    letter-spacing: -1px;
+    display: block;
+    color: #000000;
+    margin: 0px 0px 15px 0px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+.text-justify {
+    text-align: justify;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+.text-lowercase {
+    text-transform: lowercase;
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+/*Z*/
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.table-header thead > tr > th {
+    border-top: 0px;
+}
+
+.table-report thead > tr > th {
+    border-bottom: 2px solid #333;
+}
+
+.table-report thead > tr > th.total {
+    border-top: 2px solid #333;
+    border-bottom: 0px;
+}
+
+.table-report tbody > tr > td {
+    border:0px;
+}
+
+.table-report tbody > tr > td.r-border {
+    border-top: 0px solid #c8c8c8;
+    border-bottom: 0px solid #c8c8c8;
+}
+
+.table-report thead > tr > th.r-border {
+    border-bottom: 1px solid #c8c8c8;
+}
+
+.table-report tbody > tr > td.r-background, .table-report thead > tr > th.r-background {
+    background: #e4e4e4;
+}
+
+.table-report thead > tr > th.space, .table-report tbody > tr > td.space {
+    width:1px;
+    padding:1px;
+}
+
+#body{
+    margin: 0;
+}
+
+.border_no_left {
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.border_no_right {
+    border-top: 1px solid #333;
+    border-left: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.border_top {
+    border-top: 1px solid #333;
+}
+
+.border_right {
+    border-right: 1px solid #333;
+}
+
+.border_bottom {
+    border-bottom: 1px solid #333;
+}
+
+.v_middle {
+    vertical-align: middle;
+}
+.v_top {
+    vertical-align: top;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+table {
+    background-color: transparent;
+    border-collapse:collapse;
+    border-spacing:0;
+}
+caption {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #777;
+    text-align: left;
+}
+th {
+    text-align: left;
+}
+.table {
+    border-collapse:collapse;
+    border-spacing:0;
+    width:100%;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    /*padding: 1px;*/
+    line-height: 1.3;
+    vertical-align: top;
+}
+.table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #333;
+}
+
+.page-footer .page-footer-inner {
+    float: left;
+    display: inline-block;
+}
+
+/*# sourceMappingURL=bootstrap.css.map */

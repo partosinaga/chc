@@ -1,0 +1,173 @@
+html,
+body {
+    height:100%;
+}
+
+@page { margin: 20px 30px -20px 60px; }
+
+body {
+    background-color: #fff;
+    margin: 15px 15px 15px 15px;
+    font: 8pt normal Helvetica, Arial, sans-serif;
+    color: #000000;
+    line-height: 16px;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 100%;
+}
+
+a {
+    color: #003399;
+    background-color: transparent;
+    font-weight: normal;
+}
+
+h1 {
+    background-color: transparent;
+    font-size: 10pt;
+    font-weight: normal;
+    margin: 0;
+    text-align:center;
+}
+
+.logo {
+    top: 0px;
+    width:190px;
+}
+
+#body{
+    margin: 0;
+}
+
+p.footer{
+    text-align: right;
+    font-size: 11px;
+    border-top: 1px solid #D0D0D0;
+    line-height: 32px;
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 0;
+}
+
+#container{
+    margin-top: 10px;
+}
+
+#container-detail{
+    border: 1px solid #000000;
+}
+
+#container-journal {
+    margin-top: 20px;
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.header-payment {
+    padding: 5px;
+}
+
+.header-payment tr td {
+    vertical-align: top;
+}
+
+.payment-detail tr th {
+    padding: 8px 5px 5px 5px;
+    border: 1px solid #000000;
+}
+
+.payment-detail thead tr th {
+    background: #E0E0E0;
+}
+
+.payment-detail tfoot tr th {
+    padding: 8px 3px 3px 5px;
+}
+
+.payment-detail tr td {
+    padding: 5px 3px 3px 3px;
+    border-right: 1px solid #000000;
+    vertical-align: top;
+}
+
+table.t_header td {
+    padding: 2px 0px;
+}
+
+table.detail tr th {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+#footer {
+    width:100%;
+}
+
+.padding-3 {
+    padding:3px;
+}
+
+.padding-4 {
+    padding:4px;
+}
+
+.padding-5 {
+    padding:5px;
+}
+
+.padding-6 {
+    padding:6px;
+}
+
+.border {
+    border: 1px solid #000000;
+}
+
+.border_no_left {
+    border-top: 1px solid #000000;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.border_no_right {
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.border_top {
+    border-top: 1px solid #000000;
+}
+
+.border_right {
+    border-right: 1px solid #000000;
+}
+
+.v_middle {
+    vertical-align: middle;
+}
+.v_top {
+    vertical-align: top;
+}
+
+.text-center{
+    text-align:center;
+}
+
+.text-left{
+    text-align:left;
+}
+
+.text-right{
+    text-align:right;
+}
+
+hr {
+    margin:1px;
+    border-top: 1px solid #000000;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}

@@ -1,0 +1,78 @@
+html,
+body {
+    height:100%;
+}
+
+/*html{margin-bottom: 5px;}*/
+@page {margin: 40px 40px 8px 40px;}
+
+body {
+    background-color: #fff;
+    margin: 15px 15px 15px 15px;
+    font: 8pt normal Helvetica, Arial, sans-serif;
+    color: #000000;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 100%;
+    font: 8pt normal Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    color: #000000;
+    background-color: transparent;
+    font-size: 10pt;
+    font-weight: normal;
+    margin: 0 0 0 0;
+    padding: 0px;
+    text-align:left;
+}
+h3 {
+    color: #000000;
+    background-color: transparent;
+    font-size: 9pt;
+    font-weight: normal;
+    margin: 0 0 0 0;
+    padding: 0px;
+    text-align:left;
+}
+
+#body{
+    margin: 0;
+}
+
+#container{
+    /*border: 0px solid #000000;*/
+}
+
+#footer {
+    width:100%;
+}
+
+table.border tr th, table.border tr td {
+    border: 1px solid #000000;
+}
+
+table.border tr th {
+    padding: 5px 10px;
+}
+
+table.border tr td {
+    padding: 18px 10px;
+}
+
+table.border tr td.small_padding {
+    padding: 5px;
+}
+
+table.no_border tr th, table.no_border tr td {
+    border: 0px solid #000000;
+}
+
+table.tbl_small_padding tr td {
+    padding: 8px 0px;
+    vertical-align: top;
+}
+

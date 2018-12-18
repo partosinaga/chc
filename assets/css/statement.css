@@ -1,0 +1,137 @@
+/* here you can put your own css to customize and override the theme */
+html,
+body {
+    background-color: #fff;
+    /*margin: 15px 25px 15px 30px;
+    font: 11px normal Arial, sans-serif;
+    */
+    font-family:  "Open Sans", Arial, sans-serif;
+}
+
+.table-report thead{
+    display: table-header-group;
+}
+
+.table-report tfoot{
+    display: table-row-group;
+}
+
+.table-report thead > tr > th {
+    border-bottom: 2px solid #333;
+}
+
+#rpt-table thead > tr > th.r-top {
+    border-top: 2px solid #333;
+}
+
+.table-report thead > tr > th.total {
+    border-top: 2px solid #333;
+    border-bottom: 0px;
+}
+
+.table-report tbody > tr {
+    page-break-inside: avoid;
+}
+
+.table-report tbody > tr > td {
+    border-top: 0px;
+    line-height: 1.2;
+}
+
+.table-report tbody > tr > td.r-border {
+    border-top: 1px solid #c8c8c8;
+    border-bottom: 1px solid #c8c8c8;
+}
+
+.table-report thead > tr > th.r-border {
+    border-bottom: 1px solid #c8c8c8;
+}
+
+.table-report tbody > tr > td.r-background, .table-report thead > tr > th.r-background {
+    background: #e4e4e4;
+}
+
+.table-report tbody > tr.link-detail:hover, .table-report tbody > tr > td.link-detail:hover {
+    background: #c6edf3;
+    cursor: pointer;
+}
+
+.table-report thead > tr > th.space, .table-report tbody > tr > td.space {
+    width:1px;
+    padding:2px;
+}
+
+.table-header thead > tr > th {
+    border-top: 0px;
+}
+
+/* Page title */
+.page-title {
+    padding: 0px;
+    font-size: 28px;
+    letter-spacing: -1px;
+    display: block;
+    color: #666;
+    margin: 0px 0px 15px 0px;
+    font-weight: 300;
+    font-family: "Open Sans", sans-serif;
+    /* subtitle */
+}
+
+hr.strong-hr{
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #333 -moz-use-text-color #333;
+    border-image: none;
+    border-left: 0 none;
+    border-right: 0 none;
+    border-style: solid none;
+    border-width: 1px 0;
+}
+
+.loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -60px 0 0 -60px;
+    background: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 10px solid #19bee1;
+    z-index:9999;
+}
+.loading:after {
+    content: '';
+    background: transparent;
+    width: 140%;
+    height: 140%;
+    position: absolute;
+    border-radius: 100%;
+    top: -20%;
+    left: -20%;
+    opacity: 0.7;
+    box-shadow: rgba(255, 255, 255, 0.6) -4px -5px 3px -3px;
+    animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../global/img/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}

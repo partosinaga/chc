@@ -1,0 +1,217 @@
+html,
+body {
+    height:100%;
+}
+
+@page {margin: 40px 30px 0px 30px;}
+
+body {
+    background-color: #fff;
+    margin: 15px 15px 15px 15px;
+    font: 8pt "Open Sans", Arial, Helvetica, sans-serif;
+    color: #000000;
+}
+
+.logo {
+    position: absolute;
+    top: -25px;
+    left: 15px;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 100%;
+}
+
+a {
+    color: #003399;
+    background-color: transparent;
+    font-weight: normal;
+}
+
+h1 {
+    color: #000;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 0 0;
+    padding: 0px;
+}
+
+p.footer{
+    text-align: right;
+    font-size: 11px;
+    border-top: 1px solid #D0D0D0;
+    line-height: 32px;
+    padding: 0 10px 0 10px;
+    margin: 20px 0 0 0;
+}
+
+/*HEADER*/
+table.table_header{
+    padding-top: 10px;
+    border:1px solid #000;
+}
+table.table_header tr th {
+    padding: 3px 3px 3px 3px;
+    text-transform: uppercase;
+    border-right: 1px solid #000;
+    width:80px;
+}
+
+table.table_header tr td {
+    padding: 3px 5px;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    text-align: center;
+}
+
+/*CONTAINER*/
+#container{
+    border: 0px solid #000000;
+}
+
+table.table_main{
+    padding-top: 20px;
+    border: 1px solid #000;
+}
+
+table.table_main thead tr th {
+    padding: 0;
+    text-transform: uppercase;
+    border-right: 1px solid #000;
+}
+
+table.table_main h2{
+    color: #000;
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 3px!important;
+}
+
+table.table_main tbody tr td{
+    border: 1px solid #000;
+    line-height: 15px;
+    padding-left: 5px;
+    padding-top: 4px;
+}
+
+/*Family Staff*/
+table.table_family{
+    padding-top: 20px;
+    border: 1px solid #000;
+}
+
+table.table_family thead tr th {
+    padding: 0;
+    text-transform: uppercase;
+    border-right: 0px solid #000;
+}
+
+table.table_family h2{
+    color: #000;
+    background-color: transparent;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 3px!important;
+}
+
+table.table_family tbody tr td{
+    /*border: 1px solid #000;*/
+    line-height: 15px;
+    padding-left: 5px;
+    padding-top: 4px;
+}
+
+table.table_sign{
+    padding-top: 15px;
+    border: 0px solid #000;
+}
+
+table.table_sign tr th {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.v-middle {
+    padding-top: 4px;
+}
+
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right!important;
+}
+
+.border-top {
+    border-top: 1px solid #000!important;
+}
+
+.border-top-dash {
+    border-top: 1px dashed #000!important;
+}
+
+.border-right {
+    border-right: 1px solid #000!important;
+}
+
+.border-left {
+    border-left: 1px solid #000;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #000;
+}
+
+.check_box{
+    border: 1px solid #000;
+    width:10px;
+    height: 10px;
+    display: inline-block;
+    float:left;
+}
+
+.check_title{
+    float:left;
+    display: inline-block;
+}
+
+#report_note{
+    text-align: justify;
+    font-size: 7px;
+}
+
+#remark_note{
+    text-align: justify;
+    font-size: 9px;
+}
+
+#footer {
+    width:100%;
+    position: fixed;
+    bottom: 60px;
+}
+
+#page_footer {
+    width:100%;
+    position: fixed;
+    bottom: 70px;
+    text-align: center;
+    font-size: 7px;
+}
+
+hr.hr_footer {
+    border-top: 1px solid #000;
+    border-left: 0px solid #000;
+    border-right: 0px solid #000;
+    border-bottom: 0px solid #000;
+    height: 1px;
+    margin: 20px 0px;
+}
+

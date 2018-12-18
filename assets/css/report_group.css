@@ -1,0 +1,25 @@
+/******************************
+ REPORT
+******************************/
+table .report thead th.bg-grey {
+    background: #cecece;
+}
+
+.bg-tableheader {
+    border-color: #ffffff !important;
+    background-image: none !important;
+    background-color: #5C5B5C !important; /*#1bbc9b*/
+    color: white !important;
+}
+
+.bg-group1 {
+    border-color: #dddddd !important;
+    background-image: none !important;
+    background-color: #67809f !important;
+    color: white !important;
+}
+
+.table-hover2 > tbody > tr:hover > td,
+.table-hover2 > tbody > tr:hover > th {
+    background-color: #E0FAB4;
+}

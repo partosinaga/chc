@@ -1,0 +1,138 @@
+/* here you can put your own css to customize and override the theme */
+html,
+body {
+    height:100%;
+}
+
+@page {margin: 45px 25px 20px 35px;}
+
+body {
+    background-color: #fff;
+    margin: 10px -15px 25px -20px;
+    font: 10px normal Arial, sans-serif;
+    font-family:  "Open Sans", Arial, sans-serif;
+    color: #000000;
+}
+
+#body{
+    margin: 0;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 100%;
+    font: 10px "Open Sans", Arial, sans-serif;
+}
+
+.table-report thead{
+    display: table-header-group;
+}
+
+.table-report tr{
+    page-break-inside: avoid;
+}
+
+.table-report tfoot{
+    display: table-row-group;
+}
+
+.table-report thead > tr > th {
+    border-bottom: 2px solid #333;
+    font-weight: 300;
+}
+
+#rpt-table thead > tr > th.r-top {
+    border-top: 2px solid #333;
+}
+
+.table-report thead > tr > th.total {
+    border-top: 2px solid #333;
+    border-bottom: 0px;
+}
+
+.table-report tbody > tr {
+    page-break-inside: avoid;
+}
+
+.table-report tbody > tr > td {
+    border-top: 0px;
+    line-height: 1;
+    padding:3px 0px 3px 0px;
+    vertical-align: top;
+}
+
+.table-report tbody > tr > td.r-border {
+    border-top: 1px solid #c8c8c8;
+    border-bottom: 1px solid #c8c8c8;
+}
+
+.table-report thead > tr > th.r-border {
+    border-bottom: 1px solid #c8c8c8;
+}
+
+.table-report tbody > tr > td.r-background, .table-report thead > tr > th.r-background {
+    background: #e4e4e4;
+    font-weight: bold;
+    padding:3px 0px 3px 0px;
+}
+
+.table-report tbody > tr.link-detail:hover, .table-report tbody > tr > td.link-detail:hover {
+    background: #c6edf3;
+    cursor: pointer;
+}
+
+.table-report thead > tr > th.space, .table-report tbody > tr > td.space {
+    width:1px;
+    padding:2px;
+}
+
+.table-report tbody > tr.link-attention, .table-report tbody > tr > td.link-attention {
+    color: #6200EA;
+    cursor: pointer;
+}
+
+.table-header thead > tr > th {
+    border-top: 0px;
+
+}
+
+.table-report tfoot > tr > th.total {
+    border-top: 1px double #333;
+    border-bottom: 0px;
+}
+
+.table-report tfoot > tr > th {
+    border-bottom: 0px;
+    font-weight: normal;
+    padding-right:0px;
+    padding-left: 0px;
+}
+
+.table-report tfoot > tr > th.r-background {
+    background: #e4e4e4;
+    font-weight: normal;
+    border: 0px #ffffff;
+    padding-right:0px;
+    padding-left: 0px;
+}
+
+.italic{
+    font-style: italic;
+}
+
+/* Page title */
+.page-title {
+    padding: 0px;
+    letter-spacing: -1px;
+    display: block;
+    color: #000000;
+    margin: 0px 0px 13px 0px;
+    font-weight: 200;
+    font-family: "Open Sans", sans-serif;
+    /* subtitle */
+}
+
+
+
+

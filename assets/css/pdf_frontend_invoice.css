@@ -1,0 +1,136 @@
+html,
+body {
+    height:100%;
+}
+
+/*html{margin-bottom: 5px;}*/
+@page {margin: 30px 30px 50px 50px;}
+
+body {
+    background-color: #fff;
+    margin: 15px 15px 15px 15px;
+    font: 8pt normal Helvetica, Arial, sans-serif;
+    color: #000000;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 100%;
+}
+
+a {
+    color: #003399;
+    background-color: transparent;
+    font-weight: normal;
+}
+
+h1 {
+    color: #000;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0 0 0 0;
+    padding: 0px;
+    text-align:left;
+}
+
+.logo {
+    position:absolute;
+    top: 10px;
+    left: 15px;
+}
+
+#body{
+    margin: 0;
+}
+
+p.footer{
+    text-align: right;
+    font-size: 11px;
+    border-top: 1px solid #D0D0D0;
+    line-height: 32px;
+    padding: 0 10px 10px 10px;
+    margin: 20px 0 20px 0;
+}
+
+#report_header{
+    border: 0px solid #000000;
+    margin-top: 30px;
+}
+
+#report_header h1{
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 0 0 0;
+    padding: 0px;
+    text-align:center;
+}
+
+#report_header h2{
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: normal;
+    text-align:center;
+}
+
+#container{
+    border: 0px solid #000000;
+}
+
+#footer {
+    width:100%;
+    position: fixed;
+    bottom: 250px;
+}
+
+#page_footer {
+    width:100%;
+    position: fixed;
+    bottom: 20px;
+    text-align: center;
+    font-size: 7px;
+}
+
+table.table_detail tr th {
+    /*border: 0px solid #000000;
+    background-color: #000;
+    color: #fff;*/
+    border-top:1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 5px 5px;
+    text-transform: uppercase;
+}
+table.table_detail tr td {
+    padding: 3px 5px;
+}
+
+table.table_detail tr.total td {
+    padding: 5px 5px;
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+
+.border-top {
+    border-top: 1px solid #000;
+}
+
+hr.hr_footer {
+    border-top: 1px solid #000;
+    border-left: 0px solid #000;
+    border-right: 0px solid #000;
+    border-bottom: 0px solid #000;
+    height: 1px;
+    margin: 10px 0px 50px 0px;
+}
+
