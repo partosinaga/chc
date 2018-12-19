@@ -222,8 +222,20 @@
                             ---
                         </td>
                         <td >
-                            <a href="javascript:;"  class="get_coa editable editable-click" spec-key="<?php echo FNSpec::STAMP_DUTY; ?>" spec-id ="<?php echo isset($row[FNSpec::STAMP_DUTY]) ? $row[FNSpec::STAMP_DUTY]->id :''; ?>" data-type="text" data-desc="Stamp Duty">
+                            <a href="javascript:;"  class="get_coa editable editable-click" spec-key="<?php echo FNSpec::STAMP_DUTY; ?>" spec-id ="<?php echo isset($row[FNSpec::STAMP_DUTY]) ? $row[FNSpec::STAMP_DUTY]->id :''; ?>" data-type="text" data-desc="Item Intransit">
                                 <?php echo isset($row[FNSpec::ITEM_TRANSIT]) ? (($row[FNSpec::ITEM_TRANSIT]->coa_id > 0) ? $row[FNSpec::ITEM_TRANSIT]->coa_code . ' - ' . $row[FNSpec::ITEM_TRANSIT]->coa_desc : '---') : '---'; ?> </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                            Unearned Income
+                        </td>
+                        <td >
+                            ---
+                        </td>
+                        <td >
+                            <a href="javascript:;"  class="get_coa editable editable-click" spec-key="<?php echo FNSpec::STAMP_DUTY; ?>" spec-id ="<?php echo isset($row[FNSpec::STAMP_DUTY]) ? $row[FNSpec::STAMP_DUTY]->id :''; ?>" data-type="text" data-desc="Item Intransit">
+                                <?php echo isset($row[FNSpec::UNEARNED_INCOME]) ? (($row[FNSpec::UNEARNED_INCOME]->coa_id > 0) ? $row[FNSpec::UNEARNED_INCOME]->coa_code . ' - ' . $row[FNSpec::UNEARNED_INCOME]->coa_desc : '---') : '---'; ?> </a>
                         </td>
                     </tr>
                     <tr>

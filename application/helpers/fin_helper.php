@@ -95,6 +95,7 @@ class FNSpec
     const TAX_VAT                   = 401;
     const INTEREST                  = 402;
     const ITEM_TRANSIT              = 403;
+    const UNEARNED_INCOME           = 404;
 
     function get($key = 0) {
         $CI =& get_instance();

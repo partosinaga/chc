@@ -143,7 +143,7 @@ if ($so_id > 0) {
                                                 </select>
                                             </div>
                                             <div class="col-md-4">
-                                                <input type="text" id="rate" class="form-control mask_currency" name="rate" value="<?php echo $so_id > 0 ? $row->rate : '' ?>">
+                                                <input type="text" id="rate" class="form-control mask_currency" name="rate" value="<?php echo $so_id > 0 ? $row->rate : '1' ?>">
                                             </div>
 
                                         </div>
@@ -312,7 +312,7 @@ if ($so_id > 0) {
 
                                     <div class="portlet-body col-md-4 pull-right">
                                         <div class="form-group">
-                                            <label class="control-label col-md-4" style="font-weight: bold">Total Amount</label>
+                                            <label class="control-label col-md-4" style="font-weight: bold">Subtotal</label>
 
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control mask_currency total_amount" readonly value="<?php echo $so_id > 0 ? $total_amount : ''; ?>"/>
@@ -339,7 +339,7 @@ if ($so_id > 0) {
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4" style="font-weight: bold">Total Amount <small><i>after tax</i></small></label>
+                                            <label class="control-label col-md-4" style="font-weight: bold">Total Amount </label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control text-right mask_currency total_amount_after_tax" readonly value="<?php echo $so_id > 0 ? $total_amount-$tax : '' ?>"/>
                                             </div>

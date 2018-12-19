@@ -278,8 +278,9 @@ if($inv_id > 0) {
 
                                                             <table>
                                                                 <tr>
-                                                                    <td width="140px" >Sub Total</td>
-                                                                    <th width="245px" class="text-right subtotal mask_currency"> <?php echo ($inv_id > 0 ? $subtotal = $tot_sp_amount + $tot_amount : '') ?></th>
+                                                                    <td width="140px"  >Sub Total
+                                                                        <input type="hidden" name="subtotal" class="form-control input-sm mask_currency subtotal" value ="<?php echo ($inv_id > 0 ? $row->total_amount : '') ?>"   readonly/></td>
+                                                                    <th width="245px" class="text-right  mask_currency subtotal"> <?php echo ($inv_id > 0 ? $row->total_amount : '') ?> </th>
                                                                 </tr>
                                                                 <tr>
                                                                     <td width="140px" >VAT
@@ -288,8 +289,9 @@ if($inv_id > 0) {
                                                                     <th width="245px" class="text-right vat_percent mask_currency"> <?php echo ($inv_id > 0 ? $row->total_tax : '')  ?> </th>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td width="140px" >Grand Total</td>
-                                                                    <th width="245px" class="text-right grand_total mask_currency"><?php echo ($inv_id > 0 ? $row->total_grand : '')  ?></th>
+                                                                    <td width="140px" >Grand Total
+                                                                        <input type="hidden" name="grand_total" class="form-control input-sm mask_currency grand_total" value="<?php echo ($inv_id > 0 ? $row->total_grand : '')  ?>"  readonly/></td>
+                                                                    <th width="245px" class="text-right grand_total mask_currency"> <?php echo ($inv_id > 0 ? $row->total_grand : '')  ?> </th>
                                                                 </tr>
                                                             </table>
                                                         </div>
@@ -438,7 +440,7 @@ if($inv_id > 0) {
 
                             if (msg.valid == '0' || msg.valid == '1') {
                                 if (msg.valid == '1') {
-                                    location.reload();
+                                    window.location.assign(msg.link);
                                 } else {
                                     toastr["error"](msg.message, "Error");
                                 }

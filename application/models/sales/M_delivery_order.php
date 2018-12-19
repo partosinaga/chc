@@ -189,7 +189,8 @@ class M_delivery_order extends CI_Model
                           im.item_code,
                           im.item_desc,
                           dod.delivery_qty,
-                          um.uom_code');
+                          um.uom_code,
+                          im.item_price');
         $this->db->from('delivery_order_detail dod');
         $this->db->join('in_ms_item im', 'im.item_id = dod.stock_id', 'left');
         $this->db->join('in_ms_uom um', 'um.uom_id = im.uom_id', 'left');

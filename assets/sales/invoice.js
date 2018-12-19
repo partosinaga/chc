@@ -255,7 +255,6 @@ $('document').ready(function () {
         var so_id = document.getElementById("so-id").value;
         $('.coa_id').val(coa_id);
         if (id == 0) {//if DO Payment
-            console.log(coa_id);
             if ($('#table_do >tbody >tr').length > 0) {
                 $('#table_do >tbody >tr').remove();
             }
@@ -403,11 +402,13 @@ $('document').ready(function () {
             }
             var subtotal = parseFloat(tot_amount - pt_tot_amount) || 0;
             $('.subtotal').html(subtotal);
+            $('.subtotal').val(subtotal);
             var tax = (vat / 100) * subtotal;
             $('.vat_percent').html(tax);
             $('.total_tax').val(tax);
             var grand_total = subtotal + tax;
             $('.grand_total').html(grand_total);
+            $('.grand_total').val(grand_total);
             handleMask()
 
             //call to words
@@ -421,8 +422,33 @@ $('document').ready(function () {
                 })
 
             //end of call to words
+        } else {
 
+            var vat = parseFloat(parseFloat($('input[id="vat"]').val())) || 0;
+            var tot_amount = parseFloat($('.tot_amount').val()) || 0;
 
+            var subtotal = parseFloat(tot_amount) || 0;
+            $('.subtotal').html(subtotal);
+            $('.subtotal').val(subtotal);
+            var tax = (vat / 100) * subtotal;
+            $('.vat_percent').html(tax);
+            $('.total_tax').val(tax);
+            var grand_total = subtotal + tax;
+            $('.grand_total').html(grand_total);
+            $('.grand_total').val(grand_total);
+            handleMask()
+
+            //call to words
+            $.ajax({
+                    url: js_base_url + 'sales/dp_invoice/ajax_into_words/' + grand_total,
+                    type: 'POST',
+                    dataType: 'JSON',
+                })
+                .done(function (msg) {
+                    $('.into-words-pymt').html(msg.in_words);
+                })
+
+            //end of call to words
         }
         //for payment type
     }

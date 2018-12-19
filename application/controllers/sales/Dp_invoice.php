@@ -375,10 +375,10 @@ class Dp_invoice extends CI_Controller
                 $data['company_id'] = $_POST['customer_id'];
                 $data['so_id'] = $_POST['so_id'];
                 $data['invoice_type'] = $_POST['invoice_type'];
-                $data['description'] = $_POST['remarks'];
-                $data['total_amount'] = $_POST['tot_amount'];
+                $data['total_amount'] = $_POST['subtotal'];
                 $data['total_tax'] = $_POST['total_tax'];
-                $data['total_grand'] = $_POST['total_tax'] + $_POST['tot_amount'];
+                $data['description'] = $_POST['remarks'];
+                $data['total_grand'] = $_POST['grand_total'] ;
                 $this->M_dp_invoice->update('ar_invoice_header', array('inv_id' => $inv_id), $data);
 
                 $data_log['inv_id'] = $inv_id;
@@ -405,14 +405,15 @@ class Dp_invoice extends CI_Controller
                             $this->db->insert('ar_invoice_detail', $data_detail); //reinsert detail
                         }
                     }
+                    if(isset($_POST['payment_type_id'])) {
+                        for ($i = 0; $i < count($_POST['payment_type_id']); $i++) {
+                            $data_payment['inv_id'] = $inv_id;
+                            $data_payment['sp_type_id'] = $_POST['payment_type_id'][$i];
+                            $data_payment['amount'] = $_POST['payment_type_amount'][$i];
+                            $data_payment['status'] = STATUS_NEW;
+                            $this->db->insert('ar_invoice_payment', $data_payment); //reinsert payment method invoices
 
-                    for ($i = 0; $i < count($_POST['payment_type_id']); $i++) {
-                        $data_payment['inv_id'] = $inv_id;
-                        $data_payment['sp_type_id'] = $_POST['payment_type_id'][$i];
-                        $data_payment['amount'] = $_POST['payment_type_amount'][$i];
-                        $data_payment['status'] = STATUS_NEW;
-                        $this->db->insert('ar_invoice_payment', $data_payment); //reinsert payment method invoices
-
+                        }
                     }
                 } else {
                     $this->db->delete('ar_invoice_detail', array('inv_id' => $inv_id)); //delete detail
@@ -448,10 +449,10 @@ class Dp_invoice extends CI_Controller
                     $data['company_id'] = $_POST['customer_id'];
                     $data['so_id'] = $_POST['so_id'];
                     $data['invoice_type'] = $_POST['invoice_type'];
-                    $data['total_amount'] = $_POST['tot_amount'];
+                    $data['total_amount'] = $_POST['subtotal'];
                     $data['total_tax'] = $_POST['total_tax'];
                     $data['description'] = $_POST['remarks'];
-                    $data['total_grand'] = $_POST['total_tax'] + $_POST['tot_amount'];
+                    $data['total_grand'] = $_POST['grand_total'] ;
                     $data['created_by'] = my_sess('user_id');
                     $data['created_date'] = date('Y-m-d H:i:s.000');
                     $data['status'] = STATUS_NEW;
@@ -470,15 +471,17 @@ class Dp_invoice extends CI_Controller
                                 $this->db->insert('ar_invoice_detail', $data_detail); //insert detail
                             }
                         }
+                        if(isset($_POST['payment_type_id'])){
+                            for ($i = 0; $i < count($_POST['payment_type_id']); $i++) {
+                                $data_payment['inv_id'] = $get_header_id->inv_id;
+                                $data_payment['sp_type_id'] = $_POST['payment_type_id'][$i];
+                                $data_payment['amount'] = $_POST['payment_type_amount'][$i];
+                                $data_payment['status'] = STATUS_NEW;
+                                $this->db->insert('ar_invoice_payment', $data_payment); //insert payment method invoice
 
-                        for ($i = 0; $i < count($_POST['payment_type_id']); $i++) {
-                            $data_payment['inv_id'] = $get_header_id->inv_id;
-                            $data_payment['sp_type_id'] = $_POST['payment_type_id'][$i];
-                            $data_payment['amount'] = $_POST['payment_type_amount'][$i];
-                            $data_payment['status'] = STATUS_NEW;
-                            $this->db->insert('ar_invoice_payment', $data_payment); //insert payment method invoice
-
+                            }
                         }
+
                     } else {
                         if ($_POST['status_detail'] == 1) {
                             $data_detail['inv_id'] = $get_header_id->inv_id;
@@ -649,10 +652,10 @@ class Dp_invoice extends CI_Controller
         if (isset($_POST)) {
 
             $data['status'] = STATUS_POSTED;
-            //$this->M_dp_invoice->update('ar_invoice_header', array('inv_id' => $inv_id), $data);
+            $this->M_dp_invoice->update('ar_invoice_header', array('inv_id' => $inv_id), $data); //to update status to posted
 
-
-            $qry = "SELECT * FROM ar_invoice_header WHERE inv_id = '".$inv_id."'  ";
+            //journal header
+            $qry = "SELECT * FROM ar_invoice_header WHERE inv_id = '" . $inv_id . "'  ";
             $head = $this->db->query($qry)->row();
             $journal_header['journal_date'] = date('Y-m-d H:i:s.000');
             $journal_header['journal_amount'] = $head->total_grand;
@@ -664,27 +667,117 @@ class Dp_invoice extends CI_Controller
             $journal_header['created_by'] = my_sess('user_id');
             $journal_header['created_date'] = date('Y-m-d H:i:s.000');
             $journal_header['status'] = STATUS_NEW;
-           $this->db->insert('gl_postjournal_header', $journal_header); //journal header
+            $this->db->insert('gl_postjournal_header', $journal_header); //journal header
+            //end of journal header
+            $inv_type = $this->db->get_where('ar_invoice_header', array('inv_id' => $inv_id))->row(); //get invoice type
+
+            if($inv_type->invoice_type == 0){ //if DO Payment
+                //debit
+                $get_fn_spec_dbt1 = $this->M_dp_invoice->fn_feature_spec(FNSpec::TRADE_RECEIVABLES_CORP)->row();
+                $get_id = $this->M_dp_invoice->get_posted_header_id($head->inv_no)->row();
+                $journal_debit['postheader_id'] = $get_id->postheader_id;
+                $journal_debit['coa_id'] = $get_fn_spec_dbt1->coa_id;
+                $journal_debit['coa_code'] = $get_fn_spec_dbt1->coa_code;
+                $journal_debit['journal_note'] = $head->description;
+                $journal_debit['journal_debit'] = $head->total_grand;
+                $journal_debit['journal_credit'] = 0;
+                $journal_debit['dept_id'] = my_sess('department_id');
+                $journal_debit['status'] = STATUS_NEW;
+                $this->db->insert('gl_postjournal_detail', $journal_debit);//to debit piutang penjualan
+
+                $get_fn_spec_dbt2 = $this->M_dp_invoice->fn_feature_spec(FNSpec::UNEARNED_INCOME)->row();
+                $where = "aip.inv_id = '".$inv_id."' and spt.sp_type_name like 'down%'";
+                $unearned = $this->M_dp_invoice->get_unearned_income($where)->row();
+                if(count($unearned) > 0) {
+                    $unearned_income = $unearned->amount;
+                    $journal_debit2['postheader_id'] = $get_id->postheader_id;
+                    $journal_debit2['coa_id'] = $get_fn_spec_dbt2->coa_id;
+                    $journal_debit2['coa_code'] = $get_fn_spec_dbt2->coa_code;
+                    $journal_debit2['journal_note'] = $head->description;
+                    $journal_debit2['journal_debit'] = $unearned_income;
+                    $journal_debit2['journal_credit'] = 0;
+                    $journal_debit2['dept_id'] = my_sess('department_id');
+                    $journal_debit2['status'] = STATUS_NEW;
+                    $this->db->insert('gl_postjournal_detail', $journal_debit2); //to debit pendapatan diterima dimuka
+                } else {
+                    $unearned_income = 0;
+                }
+
+                //end of debit
+
+                //journal credit
+                $get_fn_spec_crdt = $this->M_dp_invoice->fn_feature_spec(FNSpec::ITEM_TRANSIT)->row();
+                $journal_credit['postheader_id'] = $get_id->postheader_id;
+                $journal_credit['coa_id'] = $get_fn_spec_crdt->coa_id;
+                $journal_credit['coa_code'] = $get_fn_spec_crdt->coa_code;
+                $journal_credit['journal_note'] = $head->description;
+                $journal_credit['journal_debit'] = 0;
+                $journal_credit['journal_credit'] = (($head->total_grand + $unearned_income) - $head->total_tax);
+                $journal_credit['dept_id'] = my_sess('department_id');
+                $journal_credit['status'] = STATUS_NEW;
+                $this->db->insert('gl_postjournal_detail', $journal_credit); //to debit persediaan dikirim
+
+                $get_fn_spec_crdt2 = $this->M_dp_invoice->get_vat()->row();
+                $journal_credit2['postheader_id'] = $get_id->postheader_id;
+                $journal_credit2['coa_id'] = $get_fn_spec_crdt2->coa_id;
+                $journal_credit2['coa_code'] = $get_fn_spec_crdt2->coa_code;
+                $journal_credit2['journal_note'] = $head->description;
+                $journal_credit2['journal_debit'] = 0;
+                $journal_credit2['journal_credit'] = $head->total_tax;
+                $journal_credit2['dept_id'] = my_sess('department_id');
+                $journal_credit2['status'] = STATUS_NEW;;
+                $this->db->insert('gl_postjournal_detail', $journal_credit2);//to credit2 PPN Keluaran
+                //end of journal credit
+
+            }else{
+
+                //debit
+                $get_fn_spec_dbt = $this->M_dp_invoice->fn_feature_spec(FNSpec::TRADE_RECEIVABLES_CORP)->row();
+                $get_id = $this->M_dp_invoice->get_posted_header_id($head->inv_no)->row();
+                $journal_debit['postheader_id'] = $get_id->postheader_id;
+                $journal_debit['coa_id'] = $get_fn_spec_dbt->coa_id;
+                $journal_debit['coa_code'] = $get_fn_spec_dbt->coa_code;
+                $journal_debit['journal_note'] = $head->description;
+                $journal_debit['journal_debit'] = $head->total_grand;
+                $journal_debit['journal_credit'] = 0;
+                $journal_debit['dept_id'] = my_sess('department_id');
+                $journal_debit['status'] = STATUS_NEW;
+                $this->db->insert('gl_postjournal_detail', $journal_debit);//to debit piutang penjualan
+                //end of debit
+
+                //credit
+                $get_fn_spec_crdt = $this->M_dp_invoice->fn_feature_spec(FNSpec::UNEARNED_INCOME)->row();
+                $journal_credit1['postheader_id'] = $get_id->postheader_id;
+                $journal_credit1['coa_id'] = $get_fn_spec_crdt->coa_id;
+                $journal_credit1['coa_code'] = $get_fn_spec_crdt->coa_code;
+                $journal_credit1['journal_note'] = $head->description;
+                $journal_credit1['journal_debit'] = 0;
+                $journal_credit1['journal_credit'] = $head->total_amount;
+                $journal_credit1['dept_id'] = my_sess('department_id');
+                $journal_credit1['status'] = STATUS_NEW;
+                $this->db->insert('gl_postjournal_detail', $journal_credit1);//to credit1 pendapatan diterima dimuka
 
 
-            $data_journal_debit['postheader_id'] = $postheader_id->postheader_id;
-            $data_journal_debit['coa_id'] = $debit_journal->coa_id;
-            $data_journal_debit['coa_code'] = $debit_journal->coa_code;
-            $data_journal_debit['journal_note'] = $postheader_id->journal_remarks;
-            $data_journal_debit['journal_debit'] = $journal_amount->journal_amount;
-            $data_journal_debit['journal_credit'] = 0;
-            $data_journal_debit['dept_id'] = my_sess('department_id');
-            $data_journal_debit['status'] = STATUS_NEW;
-            $this->db->insert('gl_postjournal_detail', $data_journal_debit);//to debit
+                $get_fn_spec_crdt2 = $this->M_dp_invoice->get_vat()->row();
+                $journal_credit2['postheader_id'] = $get_id->postheader_id;
+                $journal_credit2['coa_id'] = $get_fn_spec_crdt2->coa_id;
+                $journal_credit2['coa_code'] = $get_fn_spec_crdt2->coa_code;
+                $journal_credit2['journal_note'] = $head->description;
+                $journal_credit2['journal_debit'] = 0;
+                $journal_credit2['journal_credit'] = $head->total_tax;
+                $journal_credit2['dept_id'] = my_sess('department_id');
+                $journal_credit2['status'] = STATUS_NEW;
+                $this->db->insert('gl_postjournal_detail', $journal_credit2);//to credit2 PPN Keluaran
+                //end of credit
+            }
 
             $data_log['inv_id'] = $inv_id;
             $data_log['log_subject'] = 'Posted Invoice';
             $data_log['approved_id'] = my_sess('user_id');
             $data_log['approved_date'] = date('Y-m-d H:i:s.000');
             $data_log['status'] = STATUS_NEW;
-            //$this->db->insert('sales_approved_log', $data_log);
+            $this->db->insert('sales_approved_log', $data_log);
 
-            exit();
             if ($this->db->trans_status() === FALSE) {
                 $this->db->trans_rollback();
                 $this->session->set_flashdata('flash_message_class', 'danger');
@@ -718,7 +811,7 @@ class Dp_invoice extends CI_Controller
             $this->M_dp_invoice->update('ar_invoice_header', array('inv_id' => $inv_id), $data);
 
             $data_log['inv_id'] = $inv_id;
-            $data_log['log_subject'] = 'Posted Invoice';
+            $data_log['log_subject'] = 'Cancel Invoice';
             $data_log['approved_id'] = my_sess('user_id');
             $data_log['approved_date'] = date('Y-m-d H:i:s.000');
             $data_log['remark'] = $reason;

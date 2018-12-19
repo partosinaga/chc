@@ -200,7 +200,7 @@ class M_dp_invoice extends CI_Model
     {
         $this->db->select('	aid.*, doh.do_code ');
         $this->db->from('ar_invoice_detail aid');
-        $this->db->join('delivery_order_header doh', 'doh.do_id = aid.do_id' , 'left');
+        $this->db->join('delivery_order_header doh', 'doh.do_id = aid.do_id', 'left');
         $this->db->where('aid.inv_id', $inv_id);
 
         return $this->db->get();
@@ -214,7 +214,7 @@ class M_dp_invoice extends CI_Model
                               msp.sp_type_name,
                               aip.amount');
         $this->db->from('ar_invoice_payment aip');
-        $this->db->join('sales_payment_type msp', 'msp.sp_type_id = aip.sp_type_id' , 'left');
+        $this->db->join('sales_payment_type msp', 'msp.sp_type_id = aip.sp_type_id', 'left');
         $this->db->where('aip.inv_id', $inv_id);
 
         return $this->db->get();
@@ -224,5 +224,44 @@ class M_dp_invoice extends CI_Model
     {
         $this->db->where($where);
         $this->db->update($table_name, $data);
+    }
+
+    public function get_posted_header_id($inv_id)
+    {
+        $this->db->select('*');
+        $this->db->from('gl_postjournal_header');
+        $this->db->where('journal_no', $inv_id);
+
+        return $this->db->get();
+    }
+
+    public function fn_feature_spec($spec_key)
+    {
+        $this->db->select('ffs.*, gc.coa_code, gc.coa_desc');
+        $this->db->from('fn_feature_spec ffs');
+        $this->db->join('gl_coa gc', ' gc.coa_id = ffs.coa_id', 'left');
+        $this->db->where('ffs.spec_key', $spec_key);
+
+        return $this->db->get();
+    }
+
+    public function get_vat()
+    {
+        $this->db->select('	tax.*, gc.coa_code');
+        $this->db->from('tax_type tax');
+        $this->db->join('gl_coa gc', ' gc.coa_id = tax.coa_id', 'left');
+        $this->db->where('tax.taxtype_id', 2);
+
+        return $this->db->get();
+    }
+
+    public function get_unearned_income($where)
+    {
+        $this->db->select('aip.*, sp_type_name');
+        $this->db->from('ar_invoice_payment aip');
+        $this->db->join('sales_payment_type spt', 'spt.sp_type_id = aip.sp_type_id', 'left');
+        $this->db->where($where);
+
+        return $this->db->get();
     }
 }

@@ -222,7 +222,7 @@ if ($do_id > 0) {
                                                         echo '<tr>
                                                             <td align="center"><input type=hidden name="item_id['.$i.']" value="'.$row_det->item_id.'"> <input type=hidden class="class_status" name="status_detail['.$i.']"  value= "1">'.$row_det->item_code.'</td>
                                                             <td>'.$row_det->item_desc.'</td>
-                                                            <td align="center">'.$row_det->uom_code.'</td>
+                                                            <td align="center"> <input type="hidden" name="item_price['.$i.']" class="form-control number_only input-sm number_only" value="'.$row_det->item_price.'"> '.$row_det->uom_code.'</td>
                                                             <td align="right"> <input type="hidden" name="qty['.$i.']" class="form-control input-sm number_only" value='.$stock_qty.'> '.$stock_qty.'</td>
                                                             <td align="right"><input type="text" name="delivery_qty['.$i.']"  class="form-control input input-sm number_only" value="'.$row_det->delivery_qty.'" max-delivery="'.$max.'"></td>
                                                             <td align="center"> <button type="button" class="btn btn-xs btn-danger remove-item" ><i class="fa fa-remove"></i></button></td>

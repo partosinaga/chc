@@ -202,7 +202,7 @@
 
                                 if (msg.valid == '0' || msg.valid == '1') {
                                     if (msg.valid == '1') {
-                                        location.reload();
+                                        window.location.assign(msg.link);
                                     } else {
                                         toastr["error"](msg.message, "Error");
                                     }

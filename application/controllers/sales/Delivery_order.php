@@ -322,6 +322,7 @@ class Delivery_order extends CI_Controller
                             $data_detail['do_id'] = $do_id;
                             $data_detail['stock_id'] = $_POST['item_id'][$a];
                             $data_detail['delivery_qty'] = $_POST['delivery_qty'][$a];
+                            $data_detail['price'] = $_POST['item_price'][$a];
                             $this->db->insert('delivery_order_detail', $data_detail);//insert detail
                         }
                     }
